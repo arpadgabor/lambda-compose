@@ -21,16 +21,16 @@ type Params = Record<string, any>
 type Query = Record<string, any>
 type Headers = Record<string, any>
 
-interface Request {
+interface Request<B = Body, P = Params, Q = Query, H = Headers> {
   body: B
   params: P
   query: Q
   headers: H
 }
 
-interface HttpContext<B = Body, P = Params, Q = Query, H = Headers> {
+interface HttpContext<B, P, Q, H> {
   // parsed request
-  req: Request
+  req: Request<B, P, Q, H>
 
   // response
   status: number
