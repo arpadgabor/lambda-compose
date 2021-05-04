@@ -9,7 +9,7 @@ import { handleHttpEvent } from 'lambda-compose'
 
 const handler = handleHttpEvent([
   ...middleware,
-  async (ctx: HttpContext) => {
+  async (ctx: HttpContext): Promise<void> => {
     // handle event
   }
 ])
@@ -21,7 +21,7 @@ type Params = Record<string, any>
 type Query = Record<string, any>
 type Headers = Record<string, any>
 
-interface ReqRes {
+interface Request {
   body: B
   params: P
   query: Q
@@ -29,8 +29,13 @@ interface ReqRes {
 }
 
 interface HttpContext<B = Body, P = Params, Q = Query, H = Headers> {
-  req: ReqRes
-  res: ReqRes & { status: number }
+  // parsed request
+  req: Request
+
+  // response
+  status: number
+  body: any
+  headers: any
 
   // aws raw event
   aws: {
