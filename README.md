@@ -1,11 +1,11 @@
-# LambdaCompose
+# Lambdaware
 
 A simple utility library to add koa-like middlewares to serverless functions. Currently in early development.
 
 ## Proposed API
 
 ```ts
-import { handleHttpEvent } from 'lambda-compose'
+import { handleHttpEvent } from 'lambdaware'
 
 const handler = handleHttpEvent([
   ...middleware,
