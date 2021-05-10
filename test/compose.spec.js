@@ -5,10 +5,6 @@ function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms || 1))
 }
 
-function isPromise(x) {
-  return x && typeof x.then === 'function'
-}
-
 test('should work', async t => {
   const arr = []
   const stack = [
