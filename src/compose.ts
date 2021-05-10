@@ -1,17 +1,17 @@
-type Middleware = (ctx: any, next: Function) => Promise<void>
+type Middleware = (ctx: any, next: Function) => Promise<any>
 
 function compose(middleware: Middleware[]) {
   if (!Array.isArray(middleware))
     throw new TypeError('Middleware stack must be an array!')
 
-  if(middleware.some(fn => typeof fn !== 'function'))
+  if (middleware.some(fn => typeof fn !== 'function'))
     throw new TypeError('Middleware must be composed of functions!')
 
-  return function <T = object>(context: T, next?: Function): Promise<void> {
+  return function <T = object>(context: T, next?: Function): Promise<any> {
     let index = -1
-    
+
     return dispatch(0)
-    
+
     function dispatch(i: number): Promise<any> {
       if (i <= index)
         return Promise.reject(new Error('next() called multiple times'))
